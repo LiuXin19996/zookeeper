@@ -18,11 +18,6 @@
 
 package org.apache.zookeeper.test;
 
-import static org.apache.zookeeper.client.FourLetterWordMain.send4LetterWord;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
@@ -38,10 +33,11 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
 import javax.management.MBeanServerConnection;
 import javax.management.ObjectName;
+
 import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.PortAssignment;
 import org.apache.zookeeper.TestableZooKeeper;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -62,13 +58,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.zookeeper.client.FourLetterWordMain.send4LetterWord;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public abstract class ClientBase extends ZKTestCase {
 
     protected static final Logger LOG = LoggerFactory.getLogger(ClientBase.class);
 
     public static int CONNECTION_TIMEOUT = 30000;
 
-    protected String hostPort = "127.0.0.1:" + PortAssignment.unique();
+//    protected String hostPort = "127.0.0.1:" + PortAssignment.unique();
+
+    protected String hostPort = "127.0.0.1:2181";
+
     protected int maxCnxns = 0;
     protected ServerCnxnFactory serverFactory = null;
     protected File tmpDir = null;
